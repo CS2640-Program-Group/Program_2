@@ -31,7 +31,7 @@ Dgrade: .asciiz "D"
 Fgrade: .asciiz "F"
 reenter_prompt: .asciiz "\nWould you like to enter a new score?\n(Y)yes   (N)No\n\nEnter 'Y' or 'N' for your selection: "
 error_msg: .asciiz "\nInvalid input. Please enter 'Y' or 'N': "
-bad_msg: .asciiz "Invlaid grade value. Please enter a grade greater than 0: "
+bad_msg: .asciiz "Invlaid grade value. Please enter a grade greater than or equal to 0: "
 
 .text
 
