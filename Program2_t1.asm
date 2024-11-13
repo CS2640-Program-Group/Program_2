@@ -29,7 +29,7 @@ Bgrade: .asciiz "B"
 Cgrade: .asciiz "C"
 Dgrade: .asciiz "D"
 Fgrade: .asciiz "F"
-reenter_prompt: .asciiz "\nWould you like to enter a new score?\n(Y)yes   (N)No\n\nEnter 'Y' or 'N' for your selection: "
+reenter_prompt: .asciiz "\nWould you like to enter a new score?\n(Y)yes   (N)No\n\nEnter 'Y' or 'N' for your selection:"
 error_msg: .asciiz "\nInvalid input. Please enter 'Y' or 'N': "
 bad_msg: .asciiz "Invlaid grade value. Please enter a grade greater than or equal to 0: "
 
@@ -54,7 +54,7 @@ letter_grade:
 	printing(score_prompt)		# print score_prompt
 get_grade:
 	userInput			# Get an integer value from the user
-	blt $s0, 0, bad_grade		# If the suser input is less than 0, go to error msg
+	blt $s0, 0, bad_grade		# If the user input is less than 0, go to error msg
 	printing(grade_msg)		# Print grade_msg
 	bge $s0, 90, A
 	bge $s0, 80, B
