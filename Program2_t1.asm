@@ -1,4 +1,4 @@
-# Elijah Rosal
+# Elijah Rosal, Caleb Szeto, Ryan Hansen, Cameron Bolanos
 # CS 2640 
 # 11-4-2024
 # Program 2: Practice with Conditionals and Loops
