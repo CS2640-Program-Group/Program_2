@@ -26,7 +26,7 @@ main:
     printing(prompt_x)
 
     # Read integer input for x
-    li $v0, 5		# ead_int
+    li $v0, 5		# read_int
     syscall
     move $t0, $v0	# store x in $t0
 
@@ -66,6 +66,7 @@ end_loop:
     # Exit the program
     li $v0, 10
     syscall
+
 invalid:
     printing(invalid_msg)
 	j input_y
