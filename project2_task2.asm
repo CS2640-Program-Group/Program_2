@@ -4,11 +4,18 @@
 # Program 2: Practice with Conditionals and Loops
 # Task 2: Advanced Math: x to the power of y
 
+.macro printing(%str)
+    li $v0, 4	# Load syscall for print_string
+	la $a0, %str	# load the address of the given string
+	syscall		# Print String
+.end_macro
+
 .data
 prompt_x:    .asciiz "Enter the value of x: "
 prompt_y:    .asciiz "Enter the value of y: "
 result_msg:  .asciiz "Result (x^y) is: "
 newline:     .asciiz "\n"
+invalid_msg: .ascizz "Sorry! Negative numbers are not allowed in the exponent for this program.\n"
 
 .text
 .globl main
@@ -16,9 +23,7 @@ newline:     .asciiz "\n"
 # Main program starts here
 main:
     # Prompt the user for x
-    li $v0, 4               
-    la $a0, prompt_x 	# load prompt_x
-    syscall
+    printing(prompt_x)
 
     # Read integer input for x
     li $v0, 5		# ead_int
@@ -26,15 +31,13 @@ main:
     move $t0, $v0	# store x in $t0
 
     # Prompt the user for y
-    li $v0, 4		# print_string
-    la $a0, prompt_y	# load prompt_y
-    syscall
-
+    printing(prompt_y)
+input_y:
     # Read integer input for y
     li $v0, 5		# read_int
     syscall
     move $t1, $v0	# store y in $t1
-
+    blt $t1, 0, invalid  # Branch if y is less than 0
     # Initialize result = 1
     li $t2, 1		# $t2 will hold the result
 
@@ -50,9 +53,7 @@ power_loop:
 
 end_loop:
     # Print result
-    li $v0, 4		# print message
-    la $a0, result_msg       
-    syscall
+    printing(result_msg)
 
     # Print the result value
     move $a0, $t2
@@ -60,10 +61,12 @@ end_loop:
     syscall
 
     # Print a newline
-    li $v0, 4	# print string
-    la $a0, newline
-    syscall
+    printing(newline)
 
     # Exit the program
     li $v0, 10
     syscall
+invalid:
+    printing(invalid_msg)
+	j input_y
+    
